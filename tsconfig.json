@@ -4,7 +4,8 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "es2015.collection"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -19,7 +20,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-   // "jsx": "preserve"
+    // "jsx": "preserve"
   },
   "include": [
     "src"
