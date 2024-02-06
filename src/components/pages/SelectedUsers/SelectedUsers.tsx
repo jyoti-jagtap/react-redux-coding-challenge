@@ -10,11 +10,12 @@ import './SelectedUsers.sass';
 
 import Rolodex from '../../molecules/Rolodex';
 const SelectedUsers = () => {
+  console.log('SelectedUsers component rendered');
   const navigate = useNavigate();
   //const { state } = useLocation();
   //const [user, setUser] = useState(state);
   const [filteredUsers, setFilteredUsers] = useState<any>([]);
-  const [alphabet, setAlphabet] = useState('');
+  const [alphabet, setAlphabet] = useState<String>();
   const [selectedAlphabet, setSelectedAlphabet] = useState<String[]>([]);
   const users = useSelector((state: any) => state.users);
   const [alphabetMapUsers, setAlphabetMapUsers] = useState<any>([]);
@@ -22,7 +23,6 @@ const SelectedUsers = () => {
     setAlphabet(alphabet);
   };
   useEffect(() => {
-    if (alphabet !== null) {
       let result = [];
       if (users && alphabet) {
         result = users.filter((element: any) => {
@@ -35,8 +35,7 @@ const SelectedUsers = () => {
         result = users;
       }
       setFilteredUsers(result);
-    }
-  }, [alphabet, users]);
+  }, [alphabet]);
 
   const getFilteredArr = (users: any) => {
     return users.reduce((acc: any, curr: any) => {
@@ -55,7 +54,6 @@ const SelectedUsers = () => {
   useEffect(() => {
     if (users) {
       let newdata = getFilteredArr(users);
-      console.log(newdata);
       setAlphabetMapUsers(newdata);
       let alphabetList: String[] = [];
       Object.keys(newdata).map((alphabet) => {
@@ -67,10 +65,10 @@ const SelectedUsers = () => {
 
   return (
     <>
-      <Title heading='Selected Users' />
+      <Title>Selected Users</Title>
       <Button
         onClick={() => navigate(-1)}
-        variant='text'
+        variant="text"
         startIcon={<WestIcon />}
       >
         Back
@@ -79,9 +77,9 @@ const SelectedUsers = () => {
         handleAlphabet={handleAlphabet}
         selectedAlphabet={selectedAlphabet}
       />
-      <div className='users'>
+      <div className="users">
         {filteredUsers?.map((user: any) => (
-          <UserCard className='user' key={user.id} user={user} />
+          <UserCard className="user" key={user.id} user={user} />
         ))}
       </div>
 

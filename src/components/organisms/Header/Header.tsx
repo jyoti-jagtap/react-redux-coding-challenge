@@ -4,11 +4,8 @@ import Navbar from '../../molecules/Navigation';
 function Header() {
   return (
     <header>
-      <div className='header-div'>
-        <Navbar />
-      </div>
+      <Navbar />
     </header>
   );
 }
-
 export default Header;

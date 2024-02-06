@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IUser } from '../../services/users.model';
-// Define the initial state using that type
 const initialState: IUser[] = [];
 
 export const usersSlice = createSlice({

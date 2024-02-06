@@ -4,14 +4,15 @@ import './Navbar.sass';
 import { NavLink, Link } from 'react-router-dom';
 import NavConstants from '../../../routes/NavConstants';
 import logo from '../../../logo.svg';
+import avatar from '../../../assets/images/avatar.png';
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <Link className="navbar-brand" to={NavConstants.HOME}>
         <img
           src={logo}
-          width="30"
-          height="30"
+          width="40"
+          height="40"
           className="d-inline-block align-top"
           alt=""
         />
@@ -30,7 +31,7 @@ const Navbar = () => {
 
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav">
-          <li className="nav-item active">
+          <li className="nav-item">
             <NavLink className="nav-link" to={NavConstants.HOME}>
               Home <span className="sr-only">(current)</span>
             </NavLink>
@@ -42,7 +43,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <UserInfo avatarUrl="" username="Jyoti" />
+      <UserInfo avatarUrl={avatar} username="Jyoti" />
     </nav>
   );
 };

@@ -11,9 +11,10 @@ const UserDetails = () => {
   const navigate = useNavigate();
   const {state}  = useLocation();
   const user = useState(state)[0];
+   console.log('User details component rendered');
   return (
     <>
-      <Title heading="User Details" />
+      <Title>User Details</Title>
       <Button
         onClick={() => navigate(-1)}
         variant="text"

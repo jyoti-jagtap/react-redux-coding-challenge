@@ -1,6 +1,7 @@
 import React from 'react';
 import './UserCard.sass';
 // import Title from "./atoms/Title"
+import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -40,7 +41,11 @@ const UserCard = ({ user }: any) => {
       </div>
 
       <CardActions>
-        <Button variant="contained" onClick={handleDeleteUser}>
+        <Button
+          variant="contained"
+          startIcon={<DeleteIcon />}
+          onClick={handleDeleteUser}
+        >
           Delete
         </Button>
       </CardActions>
