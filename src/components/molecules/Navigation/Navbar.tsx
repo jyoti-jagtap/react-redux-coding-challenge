@@ -33,7 +33,7 @@ const Navbar = () => {
         <ul className="navbar-nav">
           <li className="nav-item">
             <NavLink className="nav-link" to={NavConstants.HOME}>
-              Home <span className="sr-only">(current)</span>
+              Home
             </NavLink>
           </li>
           <li className="nav-item">
