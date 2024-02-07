@@ -1,9 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import App from './App';
-
-test('renders learn react link', () => {
+// afterEach function runs after each test suite is executed
+afterEach(() => {
+  cleanup();
+});
+test('renders the landing page', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
 });

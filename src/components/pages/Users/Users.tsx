@@ -2,6 +2,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import Button from '@mui/material/Button';
 import SearchForm from '../../molecules/SearchForm';
+import axios from 'axios';
 import './Users.sass';
 import { AgGridReact } from 'ag-grid-react';
 import React, {
@@ -19,8 +20,8 @@ import ActionCellRenderer from '../../molecules/ActionCellRenderer';
 import { IUsers } from '../../../services/users.model';
 import Title from '../../atoms/Title';
 import { ColDef } from 'ag-grid-community';
-// Row Data interface
-
+import NavConstants from '../../../routes/NavConstants';
+const baseURL = 'https://reqres.in/api/users';
 const Users = () => {
   const dispatch = useDispatch();
 
@@ -73,13 +74,13 @@ const Users = () => {
   useEffect(() => {
     if (page !== null && gridApi !== null) {
       gridRef.current!.api.showLoadingOverlay();
-      const users$ = getUsers(`https://reqres.in/api/users?&page=${page}`);
-      users$
+      axios
+        .get(baseURL + `?page=${page}`)
         .then((res) => {
-          setRowData(res.data);
+          setRowData(res.data.data);
           gridRef.current!.api.hideOverlay();
         })
-        .catch((e) => {
+        .catch((err) => {
           gridRef.current!.api.hideOverlay();
         });
     }
@@ -89,14 +90,14 @@ const Users = () => {
     if (selectedRows) {
       console.log(selectedRows);
       dispatch(saveUsers(selectedRows));
-      navigate(`/users/selected`, { state: selectedRows[0] });
+      navigate(NavConstants.SELECTED_USERS, { state: selectedRows[0] });
     }
   }, [dispatch, navigate]);
   const handleSearch = (searchQuery: string) => {
     setPage(searchQuery);
   };
   const methodFromParent = (row: any) => {
-    navigate(`/user/${row.id}`, { state: row });
+    navigate(`/users/${row.id}`, { state: row });
   };
   const onRowSelected = useCallback((event: any) => {
     if (event.type === 'rowSelected')
@@ -129,7 +130,7 @@ const Users = () => {
             rowSelection={'multiple'}
             reactiveCustomComponents
             overlayLoadingTemplate={`<div aria-live="polite" aria-atomic="true" style="position:absolute;top:0;left:0;right:0; bottom:0;" aria-label="loading">
-              <div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div></div>`}
+              <div class="spinner-border" role="status"></div></div>`}
             suppressRowClickSelection={true}
             onRowSelected={onRowSelected}
             context={{

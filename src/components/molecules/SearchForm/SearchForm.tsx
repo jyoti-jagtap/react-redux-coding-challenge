@@ -14,11 +14,14 @@ const SearchForm = ({ handleSearch }: any) => {
     handleSearch(searchQuery);
   };
   return (
-    <form className="search-form-container">
-      <InputLabel htmlFor="usersSearch">Get data from page</InputLabel>
+    <form className="search-form-container" name="searchForm">
+      <InputLabel htmlFor="inputSearch">Get data from page</InputLabel>
       <TextField
-        id="usersSearch"
+        data-testid="inputSearch"
+        id="inputSearch"
         onChange={handleSearchInput}
+        aria-label="Page Number"
+        placeholder="Page number"
         size="small"
         variant="outlined"
       />
